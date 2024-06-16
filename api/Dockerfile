@@ -1,12 +1,12 @@
-FROM golang:alpine as builder 
+FROM golang:alpine as builder
 
-RUN mkdir /builder
+RUN mkdir /build 
 
 ADD . /build/
 
-WORKDIR /build/
+WORKDIR /build 
 
-RUN go build -o main.
+RUN go build -o main .
 
 FROM alpine
 
@@ -18,7 +18,7 @@ COPY . /app
 
 COPY --from=builder /build/main /app/
 
-WORKDIR /app/
+WORKDIR /app
 
 EXPOSE 3000
 
